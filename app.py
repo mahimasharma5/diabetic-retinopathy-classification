@@ -53,7 +53,7 @@ with model_col3:
     st.markdown("K-Nearest Neighbors")
 
 with model_col4:
-    st.markdown("Gaussian Naive Bayes")
+    st.markdown("Naive Bayes")
 
 with model_col5:
     st.markdown("Support Vector Machine")
@@ -116,7 +116,7 @@ with feature_col2:
     """)
 
 with st.expander("Preview Test Dataset"):
-    st.dataframe(data.head(5), width="stretch")
+    st.dataframe(data, width="stretch", height=400)
 
 st.divider()
 
@@ -192,6 +192,12 @@ comparison_df = pd.DataFrame(comparison_results)
 st.dataframe(
     comparison_df.set_index("Model").style.format("{:.4f}"),
     width="stretch"
+)
+
+st.write(
+    "Logistic Regression achieved the best overall performance across all six evaluation metrics. "
+    "Support Vector Machine showed the second-best AUC score, while Decision Tree, "
+    "K-Nearest Neighbors, and Naive Bayes achieved comparatively lower overall results."
 )
 
 st.subheader("Detailed Model Evaluation")
@@ -283,7 +289,7 @@ st.divider()
 
 st.subheader("Prediction Results")
 
-with st.expander("Prediction Results"):
+with st.expander("View Results"):
 
     correct_predictions = (predictions == data["Class"].values).sum()
     incorrect_predictions = (predictions != data["Class"].values).sum()
