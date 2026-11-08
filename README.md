@@ -54,9 +54,6 @@ The repository contains the exploratory data analysis notebook, model training n
 | KNN | Showed moderate performance, with results slightly better than Decision Tree in Accuracy, AUC, Precision and MCC but lower Recall and F1-score. |
 | Naive Bayes | Achieved relatively high Precision but the lowest Recall and F1-score. This indicates that it identified fewer positive cases, despite having a comparatively high proportion of correct positive predictions. |
 | Support Vector Machine | Achieved the second-highest AUC and the second-best overall results across several metrics. It performed better than Decision Tree, KNN and Naive Bayes on most evaluation metrics. |
-
-### Overall Winner for the Dataset
-
-**Logistic Regression** was the overall winner for this dataset. It achieved the highest scores across all six evaluation metrics: Accuracy (0.7391), AUC (0.8153), Precision (0.8690), Recall (0.5984), F1-score (0.7087) and MCC (0.5146).
+| Overall, Winner for your dataset? | **Logistic Regression** was the overall winner for this dataset. It achieved the highest scores across all six evaluation metrics: Accuracy (0.7391), AUC (0.8153), Precision (0.8690), Recall (0.5984), F1-score (0.7087) and MCC (0.5146). |
 
 These results indicate that Logistic Regression provided the strongest overall performance among the five evaluated models on the test dataset.
