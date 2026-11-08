@@ -18,6 +18,7 @@ from sklearn.metrics import (
     classification_report
 )
 
+# Configure the app page layout and title
 st.set_page_config(
     page_title="Diabetic Retinopathy Classification",
     page_icon="🔬",
@@ -62,6 +63,7 @@ st.divider()
 
 st.subheader("Test Dataset")
 
+# Upload test CSV or use the default test dataset
 uploaded_file = st.file_uploader(
     "Upload another test CSV",
     type=["csv"]
@@ -120,6 +122,7 @@ with st.expander("Preview Test Dataset"):
 
 st.divider()
 
+# Load the 5 previously trained models
 try:
     logistic_model = joblib.load("model/logistic_regression.pkl")
     decision_tree_model = joblib.load("model/decision_tree.pkl")
@@ -135,6 +138,7 @@ feature_columns = [str(i) for i in range(19)]
 X_test = data[feature_columns]
 y_actual = data["Class"]
 
+# Apply the saved scaler to test features for models requiring scaled data
 X_test_scaled = scaler.transform(X_test)
 
 all_models = {
@@ -148,6 +152,7 @@ all_models = {
 model_predictions = {}
 comparison_results = []
 
+# Generate predictions and calculate evaluation metrics for each model
 for model_name, model in all_models.items():
 
     if model_name in ["Logistic Regression", "K-Nearest Neighbors", "Support Vector Machine"]:
@@ -245,6 +250,7 @@ with col3:
 
 st.divider()
 
+# Display the confusion matrix for selected model
 st.subheader(f"Confusion Matrix - {selected_model}")
 
 selected_confusion_matrix = confusion_matrix(y_actual, predictions)
@@ -268,6 +274,7 @@ fig.tight_layout()
 st.pyplot(fig, width=420)
 plt.close(fig)
 
+# Display the classification report for selected model
 st.subheader(f"Classification Report - {selected_model}")
 
 report = classification_report(
@@ -291,6 +298,7 @@ st.subheader("Prediction Results")
 
 with st.expander("View Results"):
 
+    # Count the correct and incorrect predictions
     correct_predictions = (predictions == data["Class"].values).sum()
     incorrect_predictions = (predictions != data["Class"].values).sum()
 
@@ -321,6 +329,7 @@ with st.expander("View Results"):
     st.pyplot(fig, width=420)
     plt.close(fig)
 
+    # Display test dataset with model predictions
     st.subheader("Dataset with Predictions")
 
     prediction_details = data.copy()
